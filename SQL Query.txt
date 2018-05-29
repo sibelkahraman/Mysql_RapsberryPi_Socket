@@ -1,0 +1,40 @@
+
+CREATE SQL Connection:
+	sql_connection = connection.MySQLConnection(user='root',
+                                                    password='1qaz2wsx3edc4rfv',
+                                                    host='localhost', 
+													database='data')
+CREATE Cursor:
+    cursor = sql_connection.cursor()
+
+EXECUTE some Query:
+	cursor.execute(some_query)
+	
+DROP Database:
+	'DROP DATABASE IF EXISTS data'
+	
+CREATE Database:
+	'CREATE DATABASE data',
+
+INSERT Query:
+	"""INSERT INTO machine 
+                        (record_no, store_no, machine_no, data, ack) 
+                        VALUES(%s, %s, %s, %s, %s)"""
+
+UPDATE Query:
+	"""UPDATE machine SET ack=%s WHERE record_no=%s"""
+
+
+Some Values:
+	(record_no, 1, 2, 'false', 'false')
+
+EXECUTION of INSERT Query:
+	cursor.execute(insert_query, values)
+
+Commit:
+	sql_connection.commit()
+
+Close:
+	sql_connection.close()
+	
+	
